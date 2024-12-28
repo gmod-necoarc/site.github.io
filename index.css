@@ -1,0 +1,252 @@
+.social-links {
+    display: flex; /* Используем flexbox для выравнивания */
+    justify-content: center; /* Центрируем кнопки */
+    gap: 20px; /* Отступ между кнопками */
+}
+
+.social-button {
+    display: flex; /* Используем flexbox для иконки и текста */
+    align-items: center; /* Центрируем по вертикали */
+    background: #b2ebf2; /* Цвет фона кнопки */
+    color: #007aff; /* Цвет текста */
+    padding: 10px 15px; /* Отступы */
+    border-radius: 5px; /* Скругление углов */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: background-color 0.3s, transform 0.3s; /* Плавный переход */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень */
+    margin: 0 10px; /* Отступ между кнопками */
+}
+
+.social-button:hover {
+    background: #009688; /* Цвет фона при наведении */
+    transform: scale(1.05); /* Увеличение при наведении */
+    color: rgb(255, 255, 255); /* Цвет текста */
+}
+
+.social-icon {
+    margin-right: 8px; /* Отступ между иконкой и текстом */
+    width: 24px; /* Ширина иконки */
+    height: auto; /* Автоматическая высота */
+}
+
+.social-member {
+    display: flex; /* Используем flexbox для выравнивания */
+    align-items: center; /* Центрируем по вертикали */
+    margin: 15px 0;
+    padding: 20px; /* Увеличенные отступы для объема */
+    background: linear-gradient(135deg, #007aff, #00c853);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.status {
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 0px; /* Отступ от нижней границы */
+    right: 10px; /* Отступ от правой границы */
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 5px;
+    color: white; /* Цвет текста статуса */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: background-color 0.3s; /* Плавный переход */
+    }
+  
+    .ready {
+    background-color: #28a745; /* Зеленый для готового */
+    }
+    .in-development {
+    background-color: #ffc107; /* Желтый для в разработке */
+    }
+  
+    .beta {
+    background-color: #17a2b8; /* Голубой для бета */
+    }
+    @keyframes backgroundAnimation {
+        0% { background-color: #4a90e2; }
+        50% { background-color: #50e3c2; }
+        100% { background-color: #4a90e2; }
+    }
+    body {
+        font-family: 'Comic Sans MS', cursive, sans-serif; /* Установка шрифта Comic Sans */
+        animation: backgroundAnimation 10s infinite; /* Анимация фона */
+        background-size: cover;
+        width: 1000px; /* или любое другое значение */
+        margin: 0 auto; /* центрирование контейнера */
+        padding: 20px;
+    }
+    
+    header {
+        background: linear-gradient(135deg, #007aff, #00c853);
+        color: white; /* Цвет текста */
+        text-align: center; /* Центрируем текст */
+        padding: 40px 20px; /* Отступы */
+        border-radius: 10px; /* Скругление углов */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Тень */
+        margin-bottom: 20px; /* Отступ снизу */
+    }
+    .logo {
+        max-width: 50px; /* Максимальная ширина логотипа */
+        display: flex; /* Используем flexbox для выравнивания */
+          align-items: center; /* Центрируем по вертикали */
+    }
+    .header img {
+        max-width: 100%;
+        height: auto;
+    }
+    h1 {
+        font-size: 2.5em; /* Размер заголовка */
+        margin: 0; /* Убираем отступы */
+        font-family: 'Arial Black', sans-serif;
+    }
+    .info-section {
+        margin: 20px 0;
+        padding: 20px;
+        background: #f9f9f9; /* Светлый фон */
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-section h2 {
+        text-align: center; /* Центрируем заголовок секции */
+        color: #333; /* Цвет заголовка секции */
+    }
+    .info-text h3 {
+        margin: 0; /* Убираем отступы */
+        color: #00c853; /* Цвет заголовка */
+    }
+
+    .info-text p {
+        margin: 5px 0; /* Отступы для описания */
+        color: #666; /* Цвет описания */
+        line-height: 1.5; /* Межстрочный интервал */
+        transition: transform 0.3s; /* Плавный переход при наведении */
+    }
+    .info-member {
+
+        font-family: Arial, sans-serif;
+        align-items: center; /* Центрируем по вертикали */
+        margin: 15px 0;
+        padding: 20px; /* Увеличенные отступы для объема */
+        background: #fff; /* Белый фон для участников */
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s; /* Плавный переход при наведении */
+    }
+    .info-member:hover {
+        transform: scale(1.02); /* Увеличение при наведении */
+    }
+    
+    section {
+        margin: 20px 0;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #ffffff;
+    }
+    .team-member {
+        display: flex; /* Используем flexbox для выравнивания */
+        align-items: center; /* Центрируем по вертикали */
+        margin: 15px 0;
+        padding: 10px;
+        background: #fff; /* Белый фон для участников */
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s; /* Плавный переход при наведении */
+    }
+
+    .team-member:hover {
+        transform: scale(1.02); /* Увеличение при наведении */
+    }
+
+    .member-icon {
+        font-size: 40px; /* Размер иконки */
+        margin-right: 15px; /* Отступ между иконкой и текстом */
+    }
+
+    .member-info h3 {
+        margin: 0; /* Убираем отступы */
+        color: #00c853; /* Цвет имени участника */
+    }
+
+    .member-info p {
+        margin: 5px 0 0; /* Отступы для описания */
+        color: #666; /* Цвет описания */
+    }
+    h2 {
+        text-align: center;
+        color: #333; /* Цвет заголовка */
+    }
+    .server {
+        position: relative;
+        background: #f9f9f9; /* Светлый фон */
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        transition: transform 0.3s; /* Плавный переход при наведении */
+        text-decoration: none;
+    }
+    .server:hover {
+        transform: scale(1.02); /* Увеличение при наведении */
+    }
+    .server h3 {
+        margin: 0;
+    }
+    .server img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    .server a {
+        display: inline-block;
+        margin-top: 10px;
+        text-decoration: none;
+    }
+    .server a:hover {
+        text-decoration: none;
+    }
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 10px;
+        background-color: #b2ebf2; /* Цвет фона */
+        color: #007aff; /* Синий цвет */
+        text-decoration: none; /* Убираем подчеркивание */
+        border-radius: 5px; /* Скругление углов */
+        transition: background-color 0.3s, transform 0.3s; /* Плавный переход */
+    }
+    .button:hover {
+        background-color: #009688; /* Цвет фона при наведении */
+        transform: scale(1.05); /* Увеличение кнопки при наведении */
+        color: rgb(255, 255, 255); /* Цвет текста */
+    }
+    
+    .news-item {
+        margin: 15px 0;
+        padding: 10px;
+        background: #e3f2fd; /* Светлый фон для новостей */
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.3s; /* Плавный переход */
+    }
+    .news-item:hover {
+         transform: scale(1.01); /* Увеличение кнопки при наведении */
+    }
+    .rules-item {
+        margin: 15px 0;
+        padding: 10px;
+        background: #a0d7ff; /* Светлый фон для новостей */
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.3s; /* Плавный переход */
+    }
+    .rules-item:hover {
+         transform: scale(1.01); /* Увеличение кнопки при наведении */
+    }

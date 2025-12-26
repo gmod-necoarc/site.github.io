@@ -3,90 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЕБА ты что, стоп</title>
+    <title>Android Settings Deep Links 2025</title>
     <style>
-        @keyframes backgroundAnimation {
-        0% { background-color: #4a90e2; }
-        50% { background-color: #50e3c2; }
-        100% { background-color: #4a90e2; }
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; background-color: #f4f4f9; }
+        .btn { 
+            display: block; 
+            width: 100%; 
+            padding: 15px; 
+            margin-bottom: 10px; 
+            background-color: #007bff; 
+            color: white; 
+            text-decoration: none; 
+            text-align: center; 
+            border-radius: 8px; 
+            font-weight: bold;
         }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            animation: backgroundAnimation 10s infinite;
-        }
-        h1 {
-            text-align: center;
-            color: #ffffff;
-        }
-        h2 {
-            text-align: center;
-            color: #ffffff;
-        }
-        .team-member {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 10px 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-        }
-        .member-image {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            margin-right: 15px;
-        }
-        .member-name {
-            font-size: 1.5em;
-            color: #007BFF;
-        }
-        .member-role {
-            font-style: italic;
-            color: #555;
-        }
-        .contact {
-            margin-top: 10px;
-            color: #007BFF;
-        }
-        .meme {
-            margin-top: 10px;
-            height: auto;
-            max-width: 250px;
-        }
+        .btn:active { background-color: #0056b3; }
+        h2 { color: #333; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+        .info { font-size: 0.9em; color: #666; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <h1>Создатели сервера</h1>
+    <h2>Общие настройки</h2>
+    <a href="intent:#Intent;action=android.settings.SETTINGS;end" class="btn">Главные настройки</a>
+    <a href="intent:#Intent;action=android.settings.DISPLAY_SETTINGS;end" class="btn">Экран</a>
+    <a href="intent:#Intent;action=android.settings.SOUND_SETTINGS;end" class="btn">Звук</a>
+    <a href="intent:#Intent;action=android.settings.INTERNAL_STORAGE_SETTINGS;end" class="btn">Память / Хранилище</a>
 
-    <div class="team-member">
-        
-        <div>
-            <div class="member-name">FOXinAboX</div>
-            <div class="member-role">разработчик</div>
-            <p>Кому надо это описание, ну уж точно не мне) хе хех хе</p>
-            <div class="contact">Стим: <a href="https://steamcommunity.com/id/htoz/">Кликни</a></div>
-            <img src="https://i.imgur.com/LxIvp2Y.jpeg" alt="Мем про разработчика" class="meme">
-        </div>
-    </div>
+    <h2>Сети и подключения</h2>
+    <a href="intent:#Intent;action=android.settings.WIFI_SETTINGS;end" class="btn">Wi-Fi</a>
+    <a href="intent:#Intent;action=android.settings.BLUETOOTH_SETTINGS;end" class="btn">Bluetooth</a>
+    <a href="intent:#Intent;action=android.settings.WIRELESS_SETTINGS;end" class="btn">Режим полета / Сети</a>
+    <a href="intent:#Intent;action=android.settings.NFC_SETTINGS;end" class="btn">NFC</a>
 
-    <div class="team-member">
-        
-        <div>
-            <div class="member-name">Random7YT</div>
-            <div class="member-role">не зню кто он</div>
-            <p>Он кароч типо сценарист всякие идеи предлагает.</p>
-            <div class="contact">Steam: <a href="https://steamcommunity.com/profiles/76561199218622704">*Клик*</a></div>
-            <img src="https://i.imgur.com/Ag3tyYi.jpeg" alt="Мем про дизайнера" class="meme">
-        </div>
-    </div>
+    <h2>Приложения</h2>
+    <a href="intent:#Intent;action=android.settings.APPLICATION_SETTINGS;end" class="btn">Список всех приложений</a>
+    <a href="intent:#Intent;action=android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS;end" class="btn">Управление приложениями</a>
+    
+    <!-- Замените com.android.chrome на нужный пакет, например com.whatsapp -->
+    <a href="intent:#Intent;action=android.settings.APPLICATION_DETAILS_SETTINGS;data=package:ru.yandex.androidkeyboard.centaur;end" class="btn" style="background-color: #28a745;">О приложении (на примере Chrome)</a>
 
-    <h2>аоаоа я тебя съем</h2>
-    <h2>бобер съел тебя, и теперь ты лох</h2>
+    <h2>Безопасность и аккаунты</h2>
+    <a href="intent:#Intent;action=android.settings.SECURITY_SETTINGS;end" class="btn">Безопасность</a>
+    <a href="intent:#Intent;action=android.settings.LOCATION_SOURCE_SETTINGS;end" class="btn">Геолокация</a>
+    <a href="intent:#Intent;action=android.settings.SYNC_SETTINGS;end" class="btn">Синхронизация аккаунтов</a>
+
+    <h2>Для разработчиков</h2>
+    <a href="intent:#Intent;action=android.settings.APPLICATION_DEVELOPMENT_SETTINGS;end" class="btn" style="background-color: #dc3545;">Настройки разработчика</a>
+
+    <p class="info">Примечание: Если кнопка не работает, возможно, производитель вашего устройства (Samsung, Xiaomi и др.) ограничил прямой доступ к этому разделу через Intent в версии Android 2025 года.</p>
 
 </body>
 </html>

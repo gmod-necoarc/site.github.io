@@ -1,42 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bypass Fix</title>
+    <title>TERMINAL: ANDROID_EXPLOIT_2025</title>
     <style>
-        button { 
-            width: 100%; padding: 50px; font-size: 24px; 
-            background: #4CAF50; color: white; border: none; border-radius: 20px;
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
         }
+        .matrix-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            color: rgba(0, 255, 0, 0.1);
+            font-size: 10px;
+            z-index: -1;
+            pointer-events: none;
+        }
+        h1 { text-shadow: 0 0 10px #0f0; border-bottom: 1px solid #0f0; padding-bottom: 10px; }
+        .section {
+            border: 1px solid #0f0;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(0, 20, 0, 0.8);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: transparent;
+            color: #0f0;
+            border: 1px solid #0f0;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .btn:hover { background: #0f0; color: #000; box-shadow: 0 0 20px #0f0; }
+        .warning { color: #f00; font-size: 0.8em; margin-top: 5px; }
+        .label { color: #888; font-size: 0.9em; margin-bottom: 5px; display: block; }
     </style>
 </head>
 <body>
 
-    <button onclick="bypass()">ОТКРЫТЬ НАСТРОЙКИ</button>
+<div class="matrix-bg" id="matrix"></div>
 
-    <script>
-    function bypass() {
+<h1>SYSTEM_BREACH_V4.2</h1>
+
+<div class="section">
+    <span class="label">// TARGET: RU.YANDEX.ANDROIDKEYBOARD.CENTAUR</span>
+    <!-- Метод 1: Прямой Intent -->
+    <a href="intent:#Intent;action=android.settings.APPLICATION_DETAILS_SETTINGS;data=package:ru.yandex.androidkeyboard.centaur;end" class="btn">
+        OPEN_APP_INFO (DIRECT)
+    </a>
+    
+    <!-- Метод 2: Форсированный обход через Blob (для Android 11+) -->
+    <button class="btn" onclick="exploitBlob()">FORCE BYPASS (BLOB + POPUP)</button>
+    <span class="warning">Использовать, если "обрезанный робот"</span>
+</div>
+
+<div class="section">
+    <span class="label">// SYSTEM_ACCESS_LEVEL: SETTINGS</span>
+    
+    <!-- Пасхалка Android 11 -->
+    <a href="intent:#Intent;action=android.settings.DEVICE_INFO_SETTINGS;end" class="btn">
+        EASTER_EGG (ABOUT_PHONE)
+    </a>
+
+    <!-- Сервисное меню через звонилку -->
+    <a href="tel:*%23*%234636%23*%23*" class="btn">
+        SERVICE_MENU (*#*#4636#*#*)
+    </a>
+
+    <!-- Обход через Google Play -->
+    <a href="intent:#Intent;action=com.google.android.finsky.activities.SettingsActivity;package=com.android.vending;end" class="btn">
+        PLAY_STORE_PROXY (SETTINGS)
+    </a>
+</div>
+
+<div class="section">
+    <span class="label">// LOGICAL_BYPASS: DIALOG_PICKER</span>
+    <!-- Вызов через контакты (может открыть настройки разрешений) -->
+    <a href="intent:#Intent;action=android.intent.action.PICK;data=content://contacts/people;end" class="btn">
+        SYSTEM_PICKER_EXPLOIT
+    </a>
+</div>
+
+<script>
+    // Матричный фон
+    const matrix = document.getElementById('matrix');
+    function createRain() {
+        let text = '';
+        for(let i=0; i<100; i++) text += Math.random() > 0.5 ? '0' : '1';
+        matrix.innerText = (text + '\n').repeat(50);
+    }
+    setInterval(createRain, 100);
+
+    // Функция эксплойта через Blob
+    function exploitBlob() {
         const pkg = "ru.yandex.androidkeyboard.centaur";
         const intent = `intent:#Intent;action=android.settings.APPLICATION_DETAILS_SETTINGS;data=package:${pkg};end`;
-
-        // 1. Открываем пустую вкладку (создаем новый чистый контекст)
-        var newWin = window.open('about:blank', '_blank');
         
-        if (newWin) {
-            // 2. Пишем в новую вкладку скрипт автоматического редиректа
-            newWin.document.write(`
-                <script>
-                    window.location.href = "${intent}";
-                    setTimeout(function() { window.close(); }, 500);
-                <\/script>
-            `);
-        } else {
-            // Если всплывающее окно заблокировано, пробуем обычный метод
-            window.location.href = intent;
-        }
+        const htmlContent = `
+            <script>
+                window.location.href = "${intent}";
+                setTimeout(() => window.close(), 1000);
+            <\/script>
+        `;
+        
+        const blob = new Blob([htmlContent], {type: 'text/html'});
+        const blobUrl = URL.createObjectURL(blob);
+        
+        // Попытка открыть новое окно, которое Chrome считает "локальным" (blob)
+        const win = window.open(blobUrl, '_blank');
+        if(!win) alert("BLOCKER DETECTED: Разрешите всплывающие окна!");
     }
-    </script>
+</script>
 
 </body>
 </html>

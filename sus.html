@@ -1,3 +1,62 @@
-<a href="intent:#Intent;action=android.settings.APPLICATION_DETAILS_SETTINGS;data=package:ru.yandex.androidkeyboard.centaur;end" target="_blank" rel="noopener noreferrer">
-    ПОПРОБОВАТЬ ЕЩЕ РАЗ (В НОВОЙ ВКЛАДКЕ)
-</a>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Bypass Intent Block</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #1a1a1a; color: white; }
+        .danger-btn { 
+            padding: 30px; width: 80%; font-size: 24px; font-weight: bold;
+            background: red; color: white; border: none; border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5); cursor: pointer;
+        }
+        .status { margin-top: 20px; color: #888; }
+    </style>
+</head>
+<body>
+
+    <button class="danger-btn" onclick="spamIntent()">ЗАПУСТИТЬ ОБХОД</button>
+    <div class="status" id="log">Ожидание нажатия...</div>
+
+    <script>
+        function spamIntent() {
+            const pkg = "ru.yandex.androidkeyboard.centaur";
+            const log = document.getElementById('log');
+            let count = 0;
+
+            // Разные вариации Intent-запросов
+            const variants = [
+                `intent:#Intent;action=android.settings.APPLICATION_DETAILS_SETTINGS;data=package:${pkg};end`,
+                `intent-history:#Intent;action=android.settings.APPLICATION_DETAILS_SETTINGS;data=package:${pkg};end`,
+                `googlechrome://navigate?url=intent:#Intent;action=android.settings.APPLICATION_DETAILS_SETTINGS;data=package:${pkg};end`,
+                `intent://settings/applications/details?package=${pkg}#Intent;scheme=android-app;end`
+            ];
+
+            log.innerText = "Атака запущена... Проверьте, не появилось ли окно запроса.";
+
+            // Запускаем цикл "спама"
+            const interval = setInterval(() => {
+                const currentIntent = variants[count % variants.length];
+                
+                // Метод 1: Смена локации
+                window.location.href = currentIntent;
+                
+                // Метод 2: Создание скрытого фрейма (старый добрый способ обхода)
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = currentIntent;
+                document.body.appendChild(iframe);
+                
+                // Удаляем фрейм через мгновение, чтобы не мусорить в DOM
+                setTimeout(() => document.body.removeChild(iframe), 100);
+
+                count++;
+                if (count > 2000) { // Остановимся после 20 попыток, чтобы не повесить телефон
+                    clearInterval(interval);
+                    log.innerText = "Цикл завершен. Если окно не открылось, система блокирует вызов на уровне ядра.";
+                }
+            }, 50); // Интервал 100мс
+        }
+    </script>
+</body>
+</html>

